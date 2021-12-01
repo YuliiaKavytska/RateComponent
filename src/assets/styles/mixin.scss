@@ -1,0 +1,31 @@
+
+// adaptive value mixin
+$max-width: 1440;
+$max-width-container: 1440;
+
+@mixin adaptive-value($property, $start-size, $min-size, $type) {
+  $add-size: $start-size - $min-size;
+
+  @if $type==1 {
+    // adaptive value if only less than container
+    #{property}: $start-size + px;
+
+    @media (max-width: #{$max-width-container + px}) {
+      #{$property}: calc(#{$min-size + px} + #{$add-size} * ((100vw - 320px) / #{$max-width-container - 320}));
+    }
+  }
+
+  @else if $type==2 {
+    // adaptive value if only large than container
+    #{property}: $start-size + px;
+
+    @media (min-width: #{$max-width-container + px}) {
+      #{$property}: calc(#{$min-size + px} + #{$add-size} * ((100vw - 320px) / #{$max-width - 320}));
+    }
+  }
+
+  @else {
+    // adaptive value always
+    #{$property}: calc(#{$min-size + px} + #{$add-size} * ((100vw - 320px) / #{$max-width - 320}));
+  }
+}
