@@ -1,5 +1,5 @@
 <h1 align="center">
-  Application mark
+  Modal to rate application
   <br>
 </h1>
 
